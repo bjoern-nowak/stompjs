@@ -146,4 +146,7 @@ export class StompConfig {
    * See [Client#onChangeState]{@link Client#onChangeState}.
    */
   public onChangeState?: (state: ActivationState) => void;
+
+
+  public outgoingFrameInterceptors?: frameCallbackType[];
 }

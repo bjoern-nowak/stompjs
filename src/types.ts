@@ -181,4 +181,5 @@ export interface IStomptHandlerConfig {
   onUnhandledMessage: messageCallbackType;
   onUnhandledReceipt: frameCallbackType;
   onUnhandledFrame: frameCallbackType;
+  outgoingFrameInterceptors: frameCallbackType[];
 }

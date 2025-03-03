@@ -89,6 +89,8 @@ export class StompHandler {
   private _ponger: any;
   private _lastServerActivityTS: number;
 
+  private readonly _outgoingFrameInterceptors: frameCallbackType[];
+
   constructor(
     private _client: Client,
     public _webSocket: IStompSocket,
@@ -129,6 +131,8 @@ export class StompHandler {
     this.onUnhandledMessage = config.onUnhandledMessage;
     this.onUnhandledReceipt = config.onUnhandledReceipt;
     this.onUnhandledFrame = config.onUnhandledFrame;
+
+    this._outgoingFrameInterceptors = config.outgoingFrameInterceptors ?? [];
   }
 
   public start(): void {
@@ -365,6 +369,7 @@ export class StompHandler {
       escapeHeaderValues: this._escapeHeaderValues,
       skipContentLengthHeader,
     });
+    this._outgoingFrameInterceptors.forEach(ofi => ofi(frame));
 
     let rawChunk = frame.serialize();
 
