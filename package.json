@@ -1,7 +1,7 @@
 {
-  "name": "@stomp/stompjs",
-  "version": "7.0.1",
-  "description": "STOMP client for Javascript and Typescript",
+  "name": "@bjnowak/stompjs",
+  "version": "7.1.0-alpha",
+  "description": "stomp-js/stompjs but with intercept-able outgoing frames",
   "scripts": {
     "clean": "rm -rf bundles esm6",
     "rollup": "rollup -c && rm -rf bundles/esm6/",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/stomp-js/stompjs.git"
+    "url": "https://github.com/bjoern-nowak/stompjs.git"
   },
   "keywords": [
     "STOMP",
@@ -26,12 +26,12 @@
     "queue",
     "SockJS"
   ],
-  "author": "deepak@kreatio.com",
+  "author": "https://github.com/bjoern-nowak",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/stomp-js/stompjs/issues"
+    "url": "https://github.com/bjoern-nowak/stompjs/issues"
   },
-  "homepage": "https://github.com/stomp-js/stompjs#readme",
+  "homepage": "https://github.com/bjoern-nowak/stompjs#readme",
   "devDependencies": {
     "@chiragrupani/karma-chromium-edge-launcher": "^2.2.2",
     "@rollup/plugin-terser": "^0.4.0",

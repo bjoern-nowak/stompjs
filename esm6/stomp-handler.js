@@ -102,6 +102,7 @@ export class StompHandler {
         this.onUnhandledMessage = config.onUnhandledMessage;
         this.onUnhandledReceipt = config.onUnhandledReceipt;
         this.onUnhandledFrame = config.onUnhandledFrame;
+        this._outgoingFrameInterceptors = config.outgoingFrameInterceptors ?? [];
     }
     get connectedVersion() {
         return this._connectedVersion;
@@ -234,6 +235,7 @@ export class StompHandler {
             escapeHeaderValues: this._escapeHeaderValues,
             skipContentLengthHeader,
         });
+        this._outgoingFrameInterceptors.forEach(ofi => ofi(frame));
         let rawChunk = frame.serialize();
         if (this.logRawCommunication) {
             this.debug(`>>> ${rawChunk}`);

@@ -46,6 +46,7 @@ export declare class StompHandler {
     private _pinger;
     private _ponger;
     private _lastServerActivityTS;
+    private readonly _outgoingFrameInterceptors;
     constructor(_client: Client, _webSocket: IStompSocket, config: IStomptHandlerConfig);
     start(): void;
     private readonly _serverFrameHandlers;

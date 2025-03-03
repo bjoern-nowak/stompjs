@@ -110,6 +110,7 @@ export class Client {
         // These parameters would typically get proper values before connect is called
         this.connectHeaders = {};
         this._disconnectHeaders = {};
+        this.outgoingFrameInterceptors = [];
         // Apply configuration
         this.configure(conf);
     }
@@ -273,6 +274,7 @@ export class Client {
             onUnhandledFrame: frame => {
                 this.onUnhandledFrame(frame);
             },
+            outgoingFrameInterceptors: this.outgoingFrameInterceptors
         });
         this._stompHandler.start();
     }

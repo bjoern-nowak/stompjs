@@ -267,6 +267,7 @@ export declare class Client {
      */
     state: ActivationState;
     private _reconnector;
+    private outgoingFrameInterceptors;
     /**
      * Create an instance.
      */

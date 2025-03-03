@@ -604,6 +604,7 @@
             this.onUnhandledMessage = config.onUnhandledMessage;
             this.onUnhandledReceipt = config.onUnhandledReceipt;
             this.onUnhandledFrame = config.onUnhandledFrame;
+            this._outgoingFrameInterceptors = config.outgoingFrameInterceptors ?? [];
         }
         get connectedVersion() {
             return this._connectedVersion;
@@ -736,6 +737,7 @@
                 escapeHeaderValues: this._escapeHeaderValues,
                 skipContentLengthHeader,
             });
+            this._outgoingFrameInterceptors.forEach(ofi => ofi(frame));
             let rawChunk = frame.serialize();
             if (this.logRawCommunication) {
                 this.debug(`>>> ${rawChunk}`);
@@ -1000,6 +1002,7 @@
             // These parameters would typically get proper values before connect is called
             this.connectHeaders = {};
             this._disconnectHeaders = {};
+            this.outgoingFrameInterceptors = [];
             // Apply configuration
             this.configure(conf);
         }
@@ -1163,6 +1166,7 @@
                 onUnhandledFrame: frame => {
                     this.onUnhandledFrame(frame);
                 },
+                outgoingFrameInterceptors: this.outgoingFrameInterceptors
             });
             this._stompHandler.start();
         }
